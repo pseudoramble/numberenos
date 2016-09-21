@@ -1,0 +1,26 @@
+{
+  "name": "numberenos",
+  "version": "0.0.1",
+  "description": "A small tool for sorting out and evaluating sets of numbers",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npm run validate",
+    "test": "mocha --reporter landing --compilers js:babel-register",
+    "validate": "flow; test $? -eq 0 -o $? -eq 2"
+  },
+  "author": "Doug Swain (pseudoramble@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "flow": "^0.2.3",
+    "flow-bin": "^0.32.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-flow-strip-types": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-require": "^1.0.1",
+    "chai": "^3.5.0",
+    "flow-typed": "^2.0.0-beta.8",
+    "mocha": "^3.0.2"
+  }
+}
