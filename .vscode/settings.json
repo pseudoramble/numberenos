@@ -1,0 +1,4 @@
+{
+    // Flow configuration
+    "flow.path": "./node_modules/.bin/flow"
+}

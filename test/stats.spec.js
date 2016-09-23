@@ -7,7 +7,7 @@ import { mean, median, mode, standardDev, variance } from '../src/stats.js';
 describe('Stats module', () => {
     describe('the mean of a set of numbers', () => {
         it('is not a number when no numbers are specificed', () => {
-            // expect(mean(undefined)).to.equal(0); # This case is invalid when running flow
+            // expect(mean(undefined)).to.equal(0); // This case is invalid when running flow
             expect(mean([])).to.be.NaN;
         });
 
@@ -69,10 +69,48 @@ describe('Stats module', () => {
     });
 
     describe('the standard deviation of a set of numbers', () => {
+        it('is zero when no values are given', () => {
+            expect(standardDev([])).to.equal(0);
+        });
 
+        it('is around 2.236 for the set {4, 2, 5, 8, 6}', () => {
+            expect(standardDev([4, 2, 5, 8, 6])).to.be.at.least(2.236);
+        });
+
+        it('is around 1.581 for the set {1, 2, 3, 4, 5}', () => {
+            expect(standardDev([1, 2, 3, 4, 5])).to.be.at.least(1.581);
+        });
+
+        it('is exactly zero when all the numbers are the same', () => {
+            expect(standardDev([3, 3, 3, 3, 3, 3])).to.equal(0);
+            expect(standardDev([3.141929327, 3.141929327, 3.141929327])).to.equal(0);
+        });
     });
 
     describe('the variance of a set of numbers', () => {
+        it('is zero when no values are given', () => {
+            expect(variance([])).to.equal(0);
+        });
 
+        it('is exactly 1 when given the set {1, 2, 3}', () => {
+            expect(variance([1, 2, 3])).to.equal(1);
+        });
+
+        it('is exactly 6 when given the set {1, 2, 3, 4, 5, 6, 7, 8}', () => {
+            expect(variance([1, 2, 3, 4, 5, 6, 7, 8])).to.equal(6);
+        });
+
+        it('is around 40.163 when given the set {4, 12, 3.4, 18.121212, 5.4}', () => {
+            expect(variance([4, 12, 3.4, 18.121212, 5.4])).to.be.at.least(40.163);
+        });
+
+        it('is NaN when given the set {1}', () => {
+            expect(variance([1])).to.be.NaN;
+        });
+
+        it('is exactly  when all the numbers are the same', () => {
+            expect(variance([3, 3, 3, 3, 3, 3])).to.equal(0);
+            expect(variance([3.141929327, 3.141929327, 3.141929327])).to.equal(0);
+        });
     });
 });

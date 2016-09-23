@@ -1,6 +1,6 @@
 // @flow
 
-import { countBy, invertBy, isNaN, isSafeInteger, map, reduce, sortBy, sum, toSafeInteger } from 'lodash';
+import { countBy, invertBy, isNaN, isSafeInteger, map, reduce, sortBy, sumBy, toSafeInteger } from 'lodash';
 
 const toNumber = (value: string): number => {
     const parsedValue = parseFloat(value);
@@ -17,7 +17,7 @@ const toNumber = (value: string): number => {
 const toMaxNumber = (result, value, key) => Math.max(result, toNumber(key));
 
 export const mean = (values: number[]): number =>
-    sum(values) / values.length;
+    sumBy(values) / values.length;
 
 export const median = (values: number[]): number => {
     const sorted = sortBy(values);
@@ -43,8 +43,12 @@ export const mode = (values: number[]): number[] => {
     return result;
 }
 
-export const standardDev = (values: number[]): number =>
-    0
+export const standardDev = (values: number[]): number => variance(values) ** 0.5;
 
-export const variance = (values: number[]): number =>
-    0
+export const variance = (values: number[]): number => {
+    const meanOfValues = mean(values);
+    const sampleMeanDiff = map(values, x => x - meanOfValues);
+    const total = sumBy(sampleMeanDiff, x => x ** 2.0);
+
+    return total / (values.length - 1);
+}
