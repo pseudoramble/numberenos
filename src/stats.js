@@ -14,6 +14,8 @@ const toNumber = (value: string): number => {
     throw new Error('the value given (which was ' + value + ') is not a number at all!');
 }
 
+const toMaxNumber = (result, value, key) => Math.max(result, toNumber(key));
+
 export const mean = (values: number[]): number =>
     sum(values) / values.length;
 
@@ -35,7 +37,7 @@ export const median = (values: number[]): number => {
 
 export const mode = (values: number[]): number[] => {
     const tallyTable = invertBy(countBy(values));
-    const maxValue = reduce(tallyTable, (result, value, key) => Math.max(toNumber(result), toNumber(key)));
+    const maxValue = reduce(tallyTable, toMaxNumber, Number.NEGATIVE_INFINITY);
 
     const result = map(tallyTable[maxValue], toNumber);
     return result;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "npm run validate",
-    "test": "mocha --reporter landing --compilers js:babel-register",
+    "test": "mocha --compilers js:babel-register",
     "validate": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "author": "Doug Swain (pseudoramble@gmail.com)",
@@ -21,6 +21,7 @@
     "babel-require": "^1.0.1",
     "chai": "^3.5.0",
     "flow-typed": "^2.0.0-beta.8",
+    "iflow-lodash": "^1.1.24",
     "mocha": "^3.0.2"
   }
 }
