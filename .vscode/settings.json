@@ -1,4 +1,10 @@
 {
+    // Enable / disable TypeScript validation
+    "typescript.validate.enable": true,
+
+    // Enable / disable JavaScript validation
+    "javascript.validate.enable": false,
+
     // Flow configuration
     "flow.path": "./node_modules/.bin/flow"
 }
