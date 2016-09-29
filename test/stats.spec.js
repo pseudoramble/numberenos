@@ -2,7 +2,7 @@
 
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { mean, median, mode, standardDev, variance } from '../src/stats.js';
+import { mean, median, mode, standardDev, variance } from '../src/stats';
 
 describe('Stats module', () => {
     describe('the mean of a set of numbers', () => {

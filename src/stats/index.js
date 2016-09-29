@@ -10,7 +10,7 @@ const toNumber = (value: string): number => {
     } else if (!isNaN(parsedValue) && !isSafeInteger(parsedValue)) {
         return parsedValue;
     }
-
+    
     throw new Error('the value given (which was ' + value + ') is not a number at all!');
 }
 
@@ -21,6 +21,8 @@ export const mean = (values: number[]): number =>
 
 export const median = (values: number[]): number => {
     const sorted = sortBy(values);
+
+    toNumber('hello');
 
     if (sorted.length > 0 && sorted.length % 2 !== 0) {
         return sorted[Math.floor(sorted.length / 2)];
@@ -43,8 +45,6 @@ export const mode = (values: number[]): number[] => {
     return result;
 }
 
-export const standardDev = (values: number[]): number => variance(values) ** 0.5;
-
 export const variance = (values: number[]): number => {
     const meanOfValues = mean(values);
     const sampleMeanDiff = map(values, x => x - meanOfValues);
@@ -52,3 +52,5 @@ export const variance = (values: number[]): number => {
 
     return total / (values.length - 1);
 }
+
+export const standardDev = (values: number[]): number => variance(values) ** 0.5;
