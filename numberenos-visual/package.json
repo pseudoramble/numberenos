@@ -1,0 +1,41 @@
+{
+  "name": "numberenos-visual",
+  "version": "0.0.1",
+  "description": "Using numberenos to visualize some of these things",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -c --watch"
+  },
+  "author": "Doug Swain (pseudoramble@gmail.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.10.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "babel-preset-es2016": "^6.11.0",
+    "babel-preset-react": "^6.11.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "lodash": "^4.13.1",
+    "nodemon": "^1.9.2",
+    "rollup": "^0.34.1",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-commonjs": "^3.2.0",
+    "rollup-plugin-jsx": "^1.0.3",
+    "rollup-plugin-livereload": "^0.1.0",
+    "rollup-plugin-node-resolve": "^1.7.1",
+    "rollup-plugin-replace": "^1.1.1",
+    "rollup-plugin-serve": "^0.1.0",
+    "rollup-watch": "^2.5.0"
+  },
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
+    "rollup-plugin-flow": "^1.0.1"
+  }
+}
