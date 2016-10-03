@@ -6,5 +6,8 @@
     "javascript.validate.enable": false,
 
     // Flow configuration
-    "flow.path": "./node_modules/.bin/flow"
+    "flow.path": "./node_modules/.bin/flow",
+
+    // Whether auto fetching is enabled.
+    "git.autofetch": false
 }
