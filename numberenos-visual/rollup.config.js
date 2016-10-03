@@ -6,6 +6,7 @@ import replace from 'rollup-plugin-replace';
 import flow from 'rollup-plugin-flow';
 import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
+import eslint from 'rollup-plugin-eslint';
 
 const react = {
   "node_modules/react/react.js": [
@@ -62,6 +63,7 @@ export default {
     }
   },
   plugins: [
+    eslint(),
     replace({
       "process.env.NODE_ENV": JSON.stringify('development')
     }),
