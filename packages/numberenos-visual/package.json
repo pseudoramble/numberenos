@@ -4,8 +4,8 @@
   "description": "Using numberenos to visualize some of these things",
   "main": "index.js",
   "scripts": {
-    "dev": "rollup -c --watch",
-    "build": "rollup -c"
+    "dev": "NODE_ENV=development rollup -c --watch",
+    "build": "NODE_ENV=production rollup -c"
   },
   "author": "Doug Swain (pseudoramble@gmail.com)",
   "license": "ISC",

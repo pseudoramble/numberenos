@@ -63,6 +63,42 @@ const lodash = {
   ]
 };
 
+const buildPlugins = [
+  eslint(),
+  replace({
+    "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || 'development')
+  }),
+  nodeResolve({
+    jsnext: true,
+    main: true
+  }),
+  commonjs({
+    include: 'node_modules/**',
+    namedExports: Object.assign({}, react, reactDom, redux, reactRedux, lodash)
+  }),
+  babel({
+    "exclude": "node_modules/**",
+    "presets": ["es2015-rollup", "react"],
+    "runtimeHelpers": true
+  }),
+  jsx({ factory: 'React.createElement' }),
+  flow(),
+  uglify()
+];
+
+const plugins = process.env.NODE_ENV === 'production' ? 
+                  buildPlugins
+                : buildPlugins.concat([
+                    livereload({
+                      watch: 'dist/app.js'
+                    }),
+                    serve({
+                      contentBase: 'dist',
+                      host: 'localhost',
+                      port: 8080
+                    })
+                  ]);
+
 export default {
   entry: 'src/index.js',
   dest: './dist/app.js',
@@ -71,34 +107,5 @@ export default {
       env: {}
     }
   },
-  plugins: [
-    eslint(),
-    replace({
-      "process.env.NODE_ENV": JSON.stringify('development')
-    }),
-    nodeResolve({
-      jsnext: true,
-      main: true
-    }),
-    commonjs({
-      include: 'node_modules/**',
-      namedExports: Object.assign({}, react, reactDom, redux, reactRedux, lodash)
-    }),
-    babel({
-      "exclude": "node_modules/**",
-      "presets": ["es2015-rollup", "react"],
-      "runtimeHelpers": true
-    }),
-    jsx({ factory: 'React.createElement' }),
-    flow(),
-    livereload({
-        watch: 'dist/app.js'
-    }),
-    serve({
-        contentBase: 'dist',
-        host: 'localhost',
-        port: 8080
-    }),
-    uglify()
-  ]
+  plugins: plugins
 };
