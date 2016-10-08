@@ -11,9 +11,6 @@
   "author": "Doug Swain (pseudoramble@gmail.com)",
   "license": "ISC",
   "dependencies": {
-    "flow": "^0.2.3",
-    "flow-bin": "^0.32.0",
-    "lodash-es": "^4.16.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
@@ -26,12 +23,8 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.16.3",
     "babel-require": "^1.0.1",
-    "chai": "^3.5.0",
     "eslint": "^3.7.1",
     "eslint-plugin-flowtype": "^2.19.0",
-    "eslint-plugin-react": "^6.3.0",
-    "flow-typed": "^2.0.0-beta.8",
-    "iflow-lodash": "^1.1.24",
-    "mocha": "^3.0.2"
+    "eslint-plugin-react": "^6.3.0"
   }
 }
