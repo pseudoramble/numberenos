@@ -52,13 +52,16 @@ const reactRedux = {
 const lodash = {
   "node_modules/lodash/lodash.js": [
     "countBy", 
+    "fill",
     "invertBy",
     "isNaN",
     "isSafeInteger",
     "map",
     "reduce",
+    "repeat",
     "sortBy",
     "sumBy",
+    "times",
     "toSafeInteger"
   ]
 };
@@ -82,12 +85,13 @@ const buildPlugins = [
     "runtimeHelpers": true
   }),
   jsx({ factory: 'React.createElement' }),
-  flow(),
-  uglify()
+  flow()
 ];
 
 const plugins = process.env.NODE_ENV === 'production' ? 
-                  buildPlugins
+                  buildPlugins.concat([
+                    uglify()
+                  ])
                 : buildPlugins.concat([
                     livereload({
                       watch: 'dist/app.js'
