@@ -1,12 +1,12 @@
 {
   "name": "numberenos",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A small tool for sorting out and evaluating sets of numbers",
-  "main": "dist/lib.js",
+  "main": "index.js",
   "scripts": {
     "build": "rollup -c",
     "compile": "npm run validate && npm run build",
-    "test": "mocha --compilers js:babel-register",
+    "test": "babel-node ./node_modules/.bin/mocha --compilers js:babel-register",
     "validate": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "author": "Doug Swain (pseudoramble@gmail.com)",

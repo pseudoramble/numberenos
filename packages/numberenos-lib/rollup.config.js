@@ -1,7 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import replace from 'rollup-plugin-replace';
 import flow from 'rollup-plugin-flow';
 import eslint from 'rollup-plugin-eslint';
 import uglify from 'rollup-plugin-uglify';
@@ -21,7 +20,7 @@ const lodash = {
 };
 
 export default {
-  entry: 'lib/stats/index.js',
+  entry: 'lib/index.js',
   dest: './dist/numberenos.js',
   format: 'cjs',
   globals: {

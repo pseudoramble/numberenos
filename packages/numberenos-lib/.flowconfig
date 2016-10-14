@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/.*
+.*/test/.*
 
 [libs]
 node_modules/iflow-lodash/index.js.flow
