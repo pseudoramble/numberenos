@@ -11,25 +11,24 @@ type Data = {
 
 const histogramStyles = {
   "display": "flex",
-  "justify-content": "space-around",
+  "justifyContent": "space-around",
   "direction": "column",
-  "align-items": "flex-end"
+  "alignItems": "flex-end"
 };
 
-const makeStacks = (height, symbol = '•') => 
-  map(times(height, () => symbol), () => <Block color={"blue"} size={20} />);
+const makeStacks = (key, height, symbol = '•') => 
+  map(times(height, () => symbol), (_, i) => <Block key={`${i}-${key}-${height}`} color={"blue"} size={20} />);
 
 const Histogram = ({ values }: Data) => {
   const groupedData = histogram(values);
 
   return ( 
     <div>
-      <h3>Histogram</h3>
       <div style={histogramStyles}>
         {map(groupedData, (amount, key) => 
           <span key={key}>
-            {makeStacks(amount)}
-            <div style={{"padding-right": "10px"}}>{key}</div>
+            {makeStacks(key, amount)}
+            <div style={{"paddingRight": "10px"}}>{key}</div>
           </span>
         )}
       </div>

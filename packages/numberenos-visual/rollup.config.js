@@ -51,11 +51,13 @@ const reactRedux = {
 
 const lodash = {
   "node_modules/lodash/lodash.js": [
+    "chain",
     "countBy", 
     "fill",
     "invertBy",
     "isNaN",
     "isSafeInteger",
+    "keys",
     "map",
     "reduce",
     "repeat",

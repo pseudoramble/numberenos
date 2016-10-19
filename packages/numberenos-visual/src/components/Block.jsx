@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const blockStyle = (color, size) => ({
     "height": `${size}px`,
-    "background-color": color,
+    "backgroundColor": color,
     "border": "1px solid white"
 })
 

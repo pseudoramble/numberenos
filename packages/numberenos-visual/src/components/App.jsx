@@ -15,6 +15,7 @@ const App = ({ title = 'Numberenos', values = [67, 50, 51, 63, 45, 69, 63, 45, 6
     <h1>{title} App</h1>
     <p>Temperature Highs for the week: {JSON.stringify(values)}</p>
     <Report {...report(values)} />
+    <h3>Histogram</h3>
     <Histogram values={values} />
   </div>
 
