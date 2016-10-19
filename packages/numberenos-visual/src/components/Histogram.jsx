@@ -3,6 +3,8 @@ import React from 'react';
 import { histogram } from 'numberenos';
 import { times, map } from 'lodash';
 
+import Block from './Block.jsx';
+
 type Data = {
   values: number[]
 }
@@ -15,7 +17,7 @@ const histogramStyles = {
 };
 
 const makeStacks = (height, symbol = '•') => 
-  map(times(height, () => symbol), n => <div>{n}</div>);
+  map(times(height, () => symbol), () => <Block color={"blue"} size={20} />);
 
 const Histogram = ({ values }: Data) => {
   const groupedData = histogram(values);
