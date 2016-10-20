@@ -2,10 +2,25 @@
 
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
+import jsc from 'jsverify';
+
 import { mean, median, mode, standardDev, variance } from '../lib/stats';
+
+// Near zero is 1x10^(-15) (one quadrillionth)
+const nearZero = () => 0x1656e79eaf03d23c;
 
 describe('Stats module', () => {
     describe('the mean of a set of numbers', () => {
+        it('has a sum of zero when deviations of the observations from the mean are added together', () => {
+            const sumOfDifferences = function(values, mean) {
+                const differences = values.map(n => n - mean);
+                return differences.reduce((acc, next) => acc + next, 0);
+            };
+
+            const arrayNat = jsc.array(jsc.nat());
+            jsc.check(jsc.forall(arrayNat, values => sumOfDifferences(values, mean(values)) <= nearZero()));
+        });
+
         it('is not a number when no numbers are specificed', () => {
             // expect(mean(undefined)).to.equal(0); // This case is invalid when running flow
             expect(mean([])).to.be.NaN;

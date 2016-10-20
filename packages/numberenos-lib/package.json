@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "compile": "npm run validate && npm run build",
-    "test": "babel-node ./node_modules/.bin/mocha --compilers js:babel-register",
+    "test": "BABEL_ENV=test babel-node ./node_modules/.bin/mocha --compilers js:babel-register",
     "validate": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "author": "Doug Swain (pseudoramble@gmail.com)",
@@ -33,6 +33,7 @@
     "eslint-plugin-react": "^6.3.0",
     "flow-typed": "^2.0.0-beta.8",
     "iflow-lodash": "^1.1.24",
+    "jsverify": "^0.7.4",
     "mocha": "^3.0.2",
     "rollup": "^0.36.1",
     "rollup-plugin-babel": "^2.6.1",
