@@ -7,7 +7,7 @@ import jsc from 'jsverify';
 import { mean, median, mode, standardDev, variance } from '../lib/stats';
 
 // Near zero is 1x10^(-15) (one quadrillionth)
-const nearZero = () => 0x1656e79eaf03d23c;
+const aboutZero = () => 0x1656e79eaf03d23c;
 
 describe('Stats module', () => {
     describe('the mean of a set of numbers', () => {
@@ -17,8 +17,21 @@ describe('Stats module', () => {
                 return differences.reduce((acc, next) => acc + next, 0);
             };
 
-            const arrayNat = jsc.array(jsc.nat());
-            jsc.check(jsc.forall(arrayNat, values => sumOfDifferences(values, mean(values)) <= nearZero()));
+            jsc.check(jsc.forall('nearray nat', values => {
+                return sumOfDifferences(values, mean(values)) <= aboutZero();
+            }));
+        });
+
+        it('can determine the sum of the samples when multiplied by the size', () => {
+            const sum = values => values.reduce((acc, next) => acc + next, 0);
+
+            // first: jsc.check(jsc.forall('[nat]', ...
+            // second: jsc.check(jsc.forall(jsc.nearray(jsc.nat())
+            // finally:
+            jsc.check(jsc.forall('nearray nat', values => {
+                const n = values.length;
+                return mean(values) * n === sum(values);
+            }));
         });
 
         it('is not a number when no numbers are specificed', () => {
