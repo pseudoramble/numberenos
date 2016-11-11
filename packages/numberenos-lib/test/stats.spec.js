@@ -55,6 +55,11 @@ describe('Stats module', () => {
     });
 
     describe('the median of a set of numbers', () => {
+        jsc.property('is <= at least half of the numbers in the set', 'nearray nat', values => {
+            const med = median(values);
+            return values.filter(v => v <= med).length >= values.length / 2;
+        });
+
         it('is NaN when no numbers are specified', () => {
             expect(median([])).to.be.NaN;
         });
@@ -77,6 +82,19 @@ describe('Stats module', () => {
     });
 
     describe('the mode of a set of numbers', () => {
+        it('never contains more elements than the set itself', () => {
+            jsc.check(jsc.forall('nearray nat', v => mode(v).length <= v.length));
+        });
+
+        it('is idempotent', () => {
+            jsc.check(jsc.forall('nearray nat', v => {
+                const mmm = mode(mode(mode(v)));
+                const m = mode(v);
+
+                return m.every(x => mmm.includes(x));
+            }));
+        });
+
         it('is an empty set when no values are given', () => {
             expect(mode([])).to.eql([]);
         });
@@ -97,6 +115,10 @@ describe('Stats module', () => {
     });
 
     describe('the standard deviation of a set of numbers', () => {
+        /* Properties we could look at include: (http://stat.tugraz.at/AJS/ausg093/093Al-Saleh.pdf)
+         *  - Is zero when all samples are the same
+         *  - Minimum and Maximum values of the std deviation
+         */
         it('is zero when no values are given', () => {
             expect(standardDev([])).to.equal(0);
         });
